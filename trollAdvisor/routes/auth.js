@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
+const multer = require('multer'); //for uploading images
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -25,7 +26,13 @@ router.get("/signup", (req, res, next) => {
 
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
+  //const profilePic = req.file.url;
+  const email = req.body.email;
   const password = req.body.password;
+  const bio = req.body.bio;
+  const address = req.body.address;
+  const city = req.body.city;
+
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
@@ -42,7 +49,12 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+     // profilePic,
+      email,
+      password: hashPass,
+      bio, 
+      address,
+      city
     });
 
     newUser.save()
