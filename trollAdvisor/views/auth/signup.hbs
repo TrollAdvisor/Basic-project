@@ -1,13 +1,24 @@
 <h2>Signup</h2>
 
 <form action="/auth/signup" method="POST" id="form-container">
+  <label for="profilePic">Profile Pic</label>
+  <input id="profilePic" type="file" name="profilePic" placeholder="Profile pic">
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
-
   <br><br>
-
+  <label for="email">Password</label>
+  <input id="email" type="email" name="email" placeholder="marcpomar@winniethepooh.com">
   <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
+  <input id="password" type="password" name="password" placeholder="********">
+  <label for="address">Address</label>
+  <input id='address' type="text" name='address' placeholder='Address of the restaurant'>
+  <label for="city">City</label>
+  <input id='city' type="" name='city' placeholder='City'>
+  <label for="bio">Bio</label>
+  <input id='bio' type="text" name='bio' placeholder='Tell us something about you!'>
+  <label for="ratingAverage">Average rating</label>
+  <input id='ratingAverage' type="number" name='ratingAverage' placeholder='Average rating'>
+  
   <br>
   {{#if message }}
     <div class="error-message">{{ message }}</div>
