@@ -3,6 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 const multer = require('multer'); //for uploading images
+const uploadCloud = require('../config/cloudinary.js');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -24,9 +25,9 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploadCloud.single('profilePic'), (req, res, next) => {
   const username = req.body.username;
-  //const profilePic = req.file.url;
+  const profilePic = req.file.url;
   const email = req.body.email;
   const password = req.body.password;
   const bio = req.body.bio;
