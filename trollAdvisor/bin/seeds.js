@@ -28,7 +28,7 @@ let users = [
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
   }
 ]
-
+ 
 User.deleteMany()
 .then(() => {
   return User.create(users)
