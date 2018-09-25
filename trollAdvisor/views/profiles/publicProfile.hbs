@@ -1,2 +1,28 @@
-<a href="publicProfile/{{_id}}">Make a review</a>
-<a href="publicProfile/{{_id}}">Give a discount</a>
+<img src="{{user.profilePic}}" alt='profilePic'>
+<h1>
+  {{user.username}}
+</h1>
+<h3>{{user.bio}}</h3>
+
+<form action="/profile/publicProfile/:id" method="POST" id="form-container">
+  <label for="makeareview">Make a review to {{user.username}}:</label>
+  <input id="makeareview" type="text" name="makeareview" placeholder="Make a review to {{user.username}}">
+  <a href="">Save review</a>  
+  {{#if savedMessage }}
+    <div class="savedMessage">{{ savedMessage }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <label for="giveadiscount">Give a discount to {{user.username}}</label>
+  <input id="giveadiscount" type="range" name="giveadiscount" placeholder="Give a discount to {{user.username}}">
+  <a href="">Assign discount</a>
+  <br>
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+
+

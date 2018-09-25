@@ -16,10 +16,15 @@
 
   <br><br>
 
-  <a href="/profile/privateProfile"></a><button>Login</button>
+  <a {{#if user.isRestaurant}}
+  href="/profile/privateProfile"
+  {{else}}
+  href="/profile/customerProfile"
+  {{/if}}
+  ></a><button>Login</button>
 
   <p class="account-message">
     Don't have an account yet?
-    <a href="/auth/signup">Signup</a>
+  <a href="/auth/signup">Signup</a>
   </p>
 </form>
