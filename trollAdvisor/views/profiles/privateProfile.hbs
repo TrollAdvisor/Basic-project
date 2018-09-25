@@ -1,5 +1,9 @@
 <h3>Welcome to your profile, {{user.username}}!</h3>
 
-{{#if}}
-<h4>Search for a customer</h4>
+{{#if user.isRestaurant}}
+<a href="/search">Search for a customer</a>
+{{else}}
 <h4>Your recent valorations</h4>
+{{/if}}
+
+<a href="/profile/edit/{{user._id}}">Edit my profile</a>

@@ -1,22 +1,54 @@
-/* const express = require("express");
+const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
+const bcryptSalt = 10
+const multer = require('multer'); //for uploading images
+const uploadCloud = require('../config/cloudinary.js');
+
+
+
+//ir a perfil
 
 router.get("/privateProfile", (req, res, next) => {
-  console.log(req.user)
-  User.findById(req.user._id).then(user =>{
-    res.render("profiles/privateProfile", {user});
+  
+  User.findById(req.user._id).then(user => {
+    res.render("profiles/privateProfile", { user });
   })
-  .catch(err => console.log(err))
+    .catch(err => console.log(err))
 });
 
 
+
+//Editar perfil
+
+router.get('/edit/:id', (req, res) => {
+  const userId = req.params.id
+  User.findById(userId)
+  .then(user => {
+      res.render('profiles/edit', {user});
+    })
+})
+
+
+router.post('/edit/:id', uploadCloud.single('profilePic'), (req, res, next) => {
+  console.log(req.body)
+  const { username, bio, address, city } = req.body;
+  User.findOneAndUpdate({ '_id': req.params.id }, { $set: { username, bio, address, city }, })
+    .then(() => {
+      res.redirect("/profile/privateProfile")
+    })
+
+    .catch(next)
+});
+
+// router.get()
+
+
 // router.post("/signup1", (req, res, next) => {
-  
+
 //   const profilePic = req.file.url;
 //   const email = req.body.email;
 //   const password = req.body.password;
@@ -59,6 +91,6 @@ router.get("/privateProfile", (req, res, next) => {
 //       res.render("auth/signup", { message: "Something went wrong" });
 //     })
 //   });
-// }); */
+// }); 
 
 module.exports = router;
