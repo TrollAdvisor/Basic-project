@@ -1,5 +1,23 @@
 <h3>Welcome to your profile, {{user.username}}!</h3>
 
-{{#if}}
+{{#if user.isRestaurant}}
 <h4>Search for a customer</h4>
-<h4>Your recent valorations</h4>
+{{else}}
+<h4>Your received valorations</h4>
+{{/if}}
+
+{{#if user.isRestaurant}}
+<section>{{#each user.username}}
+  <a>{{user.username}}</a>
+  {{/each}}
+  <a href="">Make a review</a>
+  <br>
+  <a href="">Give a discount</a>
+</section>
+{{else}}
+<section>{{#each reviews}}
+  <p>{{reviews}}</p>
+  {{/each}}
+</section>
+{{/if}}
+
