@@ -1,17 +1,22 @@
-<h3>Welcome to your profile, {{user.username}}!</h3>
-<img src="{{user.profilePic}}" alt="">
+<h1>Welcome to your profile, {{user.username}}!</h1>
+
+<section id='restaurantinfo'>
+<img src='{{user.profilePic}}' alt='profilePic'>  
+<p>email: {{user.email}}</p>
+<p>Address: {{user.address}}</p>
+<p>City: {{user.city}}</p>
+</section>
+
 <a href="/profile/edit/{{user._id}}">Edit my profile</a>
 <a href="/profile/search">List all users</a>
 
 {{#if user.isRestaurant}}
-<h4>Search for a customer</h4>
-{{else}}
-<h4>Your received valorations</h4>
-{{/if}}
-
+<h3>Search for a customer:</h3>
 {{#each rest}}
 <a href="publicProfile/{{_id}}">{{username}}</a> <br>
 {{/each}}
+{{/if}}
+
 
 {{!-- <section>{{#each rest.username}}
   <a href="">{{rest.username}}</a>
