@@ -9,7 +9,7 @@ const uploadCloud = require('../config/cloudinary.js');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
+//login
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
@@ -21,18 +21,24 @@ router.post("/login", passport.authenticate("login", {
   passReqToCallback: true
 }));
 
+
+//SignUp
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", uploadCloud.single('profilePic'), (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const username = req.body.username;
-  const profilePic = req.file.url;
+  /* const profilePic = req.file.url; */
   const email = req.body.email;
   const password = req.body.password;
-  const bio = req.body.bio;
+  //const rol = req.body.rol
+  const isRestaurant = Boolean(req.body.isRestaurant);
+
+  /* const bio = req.body.bio;
   const address = req.body.address;
-  const city = req.body.city;
+  const city = req.body.city; */
+  console.log(req.body);
 
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
@@ -50,17 +56,20 @@ router.post("/signup", uploadCloud.single('profilePic'), (req, res, next) => {
 
     const newUser = new User({
       username,
-     // profilePic,
+     /*  profilePic, */
       email,
       password: hashPass,
-      bio, 
+     // rol
+     isRestaurant
+
+      /* bio, 
       address,
-      city
+      city */
     });
 
     newUser.save()
-    .then(() => {
-      res.render("auth/correctlySignUp");
+    .then(user => {
+      res.render("auth/edit", {user});
     })
     .catch(err => {
       res.render("auth/signup", { message: "Something went wrong" });
