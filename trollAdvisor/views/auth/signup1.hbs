@@ -1,19 +1,15 @@
-<label for="address">Address</label>
+<form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data"></form>
+  
+  <label for="address">Address</label>
   <input id='address' type="text" name='address' placeholder='Address of the restaurant'>
   <label for="city">City</label>
   <input id='city' type="" name='city' placeholder='City'>
   <label for="bio">Bio</label>
   <input id='bio' type="text" name='bio' placeholder='Tell us something about you!'><br>
+  <button type="submit">SignUp</button>
   {{#if message }}
     <div class="error-message">{{ message }}</div>
   {{/if}}
 
-  <br><br>
-
-  <button type="submit">Create account</button>
-
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/auth/login">Login</a>
-  </p>
+ 
 </form>

@@ -1,19 +1,21 @@
 <h2>Signup</h2>
 
 <form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
-  <label for="profilePic">Profile Pic</label>
-  <input id="profilePic" type="file" name="profilePic" placeholder="Profile pic"> --}}
+
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
   <br><br>
   <label for="email">Email</label>
-  <input id="email" type="email" name="email" placeholder="marcpomar@winniethepooh.com">
+  <input id="email" type="email" name="email" placeholder="marcpomar@winniethepooh.com"><br><br>
   <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="********"><br>
-  
-  
-  <label><input type="checkbox" id="cbox1" value="first_checkbox"> Are you a restaurante owner?</label><br>
+  <input id="password" type="password" name="password" placeholder="********">
+  <br><br>
+  <select name="rol" id="">
+<option value="volvo">Owner</option>
+  <option value="saab">Customer</option>
+  </select>
+  <br><br>
+  <button type="submit">Next</button>
 
-<input type="checkbox" id="cbox2" value="second_checkbox"> <label for="cbox2">Are you a hungry customer?</label>
-  <br>
-  
+
+</form>
