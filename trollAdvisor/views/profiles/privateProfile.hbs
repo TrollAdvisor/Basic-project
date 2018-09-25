@@ -1,19 +1,32 @@
 <h3>Welcome to your profile, {{user.username}}!</h3>
 
-
-
 <a href="/profile/edit/{{user._id}}">Edit my profile</a>
+<a href="/profile/search">List all users</a>
+
 {{#if user.isRestaurant}}
 <h4>Search for a customer</h4>
 {{else}}
 <h4>Your received valorations</h4>
 {{/if}}
 
-{{#if user.isRestaurant}}
-<section>{{#each user.username}}
-  <a>{{user.username}}</a>
+{{#each rest}}
+<a href="publicProfile/{{_id}}">{{username}}</a> <br>
+{{/each}}
+
+{{!-- <section>{{#each rest.username}}
+  <a href="">{{rest.username}}</a>
   {{/each}}
-  <a href="">Make a review</a>
+  <a href="publicProfile/{{rest._id}}">Make a review</a>
+  <br>
+  <a href="">Give a discount</a>
+</section> --}}
+
+
+{{!-- {{#if user.isRestaurant}}
+<section>{{#each user.username}}
+  <a href="">{{user.username}}</a>
+  {{/each}}
+  <a href="publicProfile/:id">Make a review</a>
   <br>
   <a href="">Give a discount</a>
 </section>
@@ -22,7 +35,7 @@
   <p>{{reviews}}</p>
   {{/each}}
 </section>
-{{/if}}
+{{/if}} --}}
 
 
 

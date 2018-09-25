@@ -13,13 +13,23 @@ const uploadCloud = require('../config/cloudinary.js');
 //ir a perfil
 
 router.get("/privateProfile", (req, res, next) => {
-  
   User.findById(req.user._id).then(user => {
-    res.render("profiles/privateProfile", { user });
+    User.find({isRestaurant: false})
+    .then(rest => 
+      res.render("profiles/privateProfile", { user, rest })
+      )
   })
     .catch(err => console.log(err))
 });
 
+router.get("/publicProfile/:id", (req, res, next) => {
+  let userId = req.params.id;
+  User.findById({'_id': userId})
+  .then(user => {
+    res.render('profiles/publicProfile', user)
+  })
+  .catch(err => console.log(err))
+});
 
 
 //Editar perfil
