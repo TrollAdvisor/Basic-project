@@ -45,8 +45,9 @@ router.get('/edit/:id', (req, res) => {
 
 router.post('/edit/:id', uploadCloud.single('profilePic'), (req, res, next) => {
   console.log(req.body)
+  const profilePic = req.file.url;
   const { username, bio, address, city } = req.body;
-  User.findOneAndUpdate({ '_id': req.params.id }, { $set: { username, bio, address, city }, })
+  User.findOneAndUpdate({ '_id': req.params.id }, { $set: { profilePic, username, bio, address, city }, })
     .then(() => {
       res.redirect("/profile/privateProfile")
     })

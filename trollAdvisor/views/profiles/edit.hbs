@@ -1,4 +1,4 @@
-<form action="/profile/edit/{{user._id}}" method="POST" id="form-container" {{!-- enctype="multipart/form-data" --}}>
+<form action="/profile/edit/{{user._id}}" method="POST" id="form-container" enctype="multipart/form-data">
 <label for="profilePic">Profile Pic</label>
 <p>{{req.user}}</p>
 <input id="profilePic" type="file" name="profilePic" value="{{user.profilePic}}"><br><br> 
