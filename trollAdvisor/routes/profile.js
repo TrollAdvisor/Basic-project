@@ -3,41 +3,36 @@ const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 const Review = require("../models/Review");
+const Discount = require("..//models/Discount");
+
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10
 const multer = require('multer'); //for uploading images
 const uploadCloud = require('../config/cloudinary.js');
 
-//ir a perfil
+//ir a perfil - muestra listado de clientes en rol restaurante
 router.get("/privateProfile", (req, res, next) => {
-  User.findById(req.user._id).then(user => {
+  User.findById(req.user._id)
+  .then(user => {
     User.find({isRestaurant: false})
-    .then(rest => 
-      res.render("profiles/privateProfile", { user, rest })
-      )
+    .then(rest => {
+      Review.find({client: req.user._id})
+      .then(rev => {
+      res.render("profiles/privateProfile", { user, rest, rev })
+      })
+    })
   })
     .catch(err => console.log(err))
 });
 
-router.get("/customerProfile", (req, res, next) => {
-  User.findById(req.user._id).then(user => {
-    User.find({isRestaurant: false})
-    .then(rev => 
-      res.render("profiles/customerProfile", { user, rev })
-      )
-  })
-    .catch(err => console.log(err))
-});
-
+//details of client profile for restaurants
 router.get("/publicProfile/:id", (req, res, next) => {
   let userId = req.params.id;
   User.findById({'_id': userId})
   .then(user => {
     Review.find({client: userId})
     .then(rev => {
-      console.log(user)
-        console.log(rev)
     res.render('profiles/publicProfile', { user, rev })
   })
 

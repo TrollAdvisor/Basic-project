@@ -3,6 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 const Review = require("../models/Review");
+const Discount = require("..//models/Discount");
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10
@@ -18,17 +19,19 @@ router.post("/:id", (req, res, next) => {
   const type = req.body.type;
   const pax = req.body.pax;
   const message = req.body.message;
+  const client = req.params.id;
+  const restaurant = req.body.username;
 
-  console.log(reviewText);
-
-  const newReview = new Review ({
-    reviewText,
-    restaurant,
-    client
+  const newDiscount = new Discount ({
+    type,
+    pax,
+    message,
+    client,
+    restaurant
   });
 
-  newReview.save()
-  .then(review => {
+  newDiscount.save()
+  .then(discount => {
     res.redirect("/profile/privateProfile")
    })
   .catch(err => {
