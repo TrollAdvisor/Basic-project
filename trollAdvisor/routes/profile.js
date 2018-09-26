@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
+const Review = require("../models/Review");
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10
@@ -33,23 +34,38 @@ router.get("/publicProfile/:id", (req, res, next) => {
   let userId = req.params.id;
   User.findById({'_id': userId})
   .then(user => {
-    console.log(user);
-    res.render('profiles/publicProfile', {user})
+    Review.find({client: userId})
+    .then(rev => {
+      console.log(user)
+        console.log(rev)
+    res.render('profiles/publicProfile', { user, rev })
   })
+
   .catch(err => console.log(err))
-});
+})
+}); 
 
 //guardar nueva review
-router.post('/publicProfile/:id', (req, res, next) => {
-  const { reviewText } = req.body;
-  User.findOneAndUpdate({ '_id': req.params.id }, { $set: { reviewText }, })
-    .then(() => {
-      throw savedMessage = ("Saved!")
-    })
+router.post("/publicProfile/:id", (req, res, next) => {
+  const reviewText = req.body.reviewText;
+  const restaurant = req.body.username;
+  const client = req.params.id;
+  console.log(reviewText);
 
-    .catch(next)
+  const newReview = new Review ({
+    reviewText,
+    restaurant,
+    client
+  });
+
+  newReview.save()
+  .then(review => {
+    res.redirect("/profile/privateProfile")
+   })
+  .catch(err => {
+    console.log(err)
+  })
 });
-
 
 //Editar perfil
 router.get('/edit/:id', (req, res) => {
@@ -62,7 +78,6 @@ router.get('/edit/:id', (req, res) => {
 
 
 router.post('/edit/:id', uploadCloud.single('profilePic'), (req, res, next) => {
-  console.log(req.body)
   const profilePic = req.file.url;
   const { username, bio, address, city } = req.body;
   User.findOneAndUpdate({ '_id': req.params.id }, { $set: { profilePic, username, bio, address, city }, })

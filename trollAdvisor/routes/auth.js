@@ -67,7 +67,6 @@ router.post("/signup", (req, res, next) => {
 
     newUser.save()
     .then(user => {
-      console.log(user)
       res.redirect("/auth/login");
     })
     .catch(err => {

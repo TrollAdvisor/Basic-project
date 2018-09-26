@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const reviewSchema = new Schema({
-  date: {type: String, required:true},
+  date: {type: String},
   restaurant: {type: Schema.Types.ObjectId, ref: 'User'},
   client: {type: Schema.Types.ObjectId, ref: 'User'},
   pax: {type: Number, default: 2},
