@@ -15,7 +15,7 @@ const flash      = require("connect-flash");
     
 
 mongoose
-  .connect('mongodb://localhost/trolladvisor', {useNewUrlParser: true})
+  .connect(process.env.DBURL, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -59,7 +59,6 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   }
 });
   
-
 // default value for title local
 
 // Enable authentication using session + passport

@@ -27,16 +27,9 @@ router.get("/signup", (req, res, next) => {
 
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
-  /* const profilePic = req.file.url; */
   const email = req.body.email;
   const password = req.body.password;
-  //const rol = req.body.rol
   const isRestaurant = Boolean(req.body.isRestaurant);
-
-  /* const bio = req.body.bio;
-  const address = req.body.address;
-  const city = req.body.city; */
-  console.log(req.body);
 
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
@@ -54,16 +47,10 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-     /*  profilePic, */
       email,
       password: hashPass,
-     // rol
-     isRestaurant
-
-      /* bio, 
-      address,
-      city */
-    });
+      isRestaurant
+   });
 
     newUser.save()
     .then(user => {

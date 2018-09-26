@@ -19,7 +19,10 @@ router.get("/privateProfile", (req, res, next) => {
     .then(rest => {
       Review.find({client: req.user._id})
       .then(rev => {
-      res.render("profiles/privateProfile", { user, rest, rev })
+        Discount.find({client: req.user._id})
+        .then(dis => {
+      res.render("profiles/privateProfile", { user, rest, rev, dis })
+        })
       })
     })
   })
