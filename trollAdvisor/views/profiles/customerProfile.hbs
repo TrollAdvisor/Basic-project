@@ -1,9 +1,0 @@
-<h1>Welcome to your profile, {{user.username}}!</h1>
-
-<a href="/profile/edit/{{user._id}}">Edit my profile</a>
-<a href="/profile/search">List all users</a>
-
-<h3>Your received valorations</h3>
-{{#each rev}}
-<a href="publicProfile/{{_id}}">{{reviewText}}</a> <br>
-{{/each}}
