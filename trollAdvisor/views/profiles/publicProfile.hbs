@@ -1,8 +1,6 @@
 <img src="{{user.profilePic}}" alt='Upload a photo!'>
 <h1>
   {{user.username}}
-  {{user.profilePic}}
-
 </h1>
 <h3>{{user.bio}}</h3>
 
@@ -13,31 +11,10 @@
   {{#if message }}
     <div class="message">{{ message }}</div>
   {{/if}}
+</form>
 
-  <br><br>
-
-  <label for="giveadiscount">Give a discount to {{user.username}}</label>
-  <input id="giveadiscount" type="range" min="0" max="50" name="giveadiscount" placeholder="Give a discount to {{user.username}}">
-  <button type="submit">Assign discount</button>
-  <datalist id="tickmarks">
-  <option value="0" label='0%'>
-  <option value="5">
-  <option value="10" label='10%'>
-  <option value="15">
-  <option value="20" label='20%'>
-  <option value="25">
-  <option value="30" label='30%'>
-  <option value="35">
-  <option value="40" label='40%'>
-  <option value="45">
-  <option value="50" label='50%'>
-  </datalist>
-  <br>
-  {{!-- {{#if message }}
-    <div class="error-message">{{ message }}</div>
-  {{/if}} --}}
-
-  <br><br>
+<a href="/discounts/{{user._id}}">Assign a discount to {{user.username}}</a>
+</form>
 
   <section>
     <h3>Reviews of this costumer:</h3>
@@ -47,4 +24,3 @@
     {{/each}} 
   </section>
 
-</form>
