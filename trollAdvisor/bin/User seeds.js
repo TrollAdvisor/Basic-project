@@ -1,6 +1,7 @@
 // Seeds file that remove all users and create 2 new users
 // To execute this seed, run from the root of the project
 // $ node bin/seeds.js
+require('dotenv').config();
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -10,7 +11,7 @@ const Discount = require("../models/Discount");
 const bcryptSalt = 10;
 
 mongoose
-  .connect('mongodb://localhost/trolladvisor', {useNewUrlParser: true})
+  .connect(process.env.DBURL, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
