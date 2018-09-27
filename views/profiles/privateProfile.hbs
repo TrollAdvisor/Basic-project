@@ -1,0 +1,37 @@
+<h1>Welcome to your profile, {{user.username}}!</h1>
+
+<a href="/profile/edit/{{user._id}}">Edit my profile</a>
+
+{{#if user.isRestaurant}}
+<h3>Your info:</h3>
+<section id='restaurantinfo'>
+<img src='{{user.profilePic}}' alt='(Upload your photo in your "Edit profile section!")'>  
+<p>email: {{user.email}}</p>
+<p>Address: {{user.address}}</p>
+<p>City: {{user.city}}</p>
+</section>
+<h3>Search for a customer:</h3>
+{{#each rest}}
+<a href="publicProfile/{{_id}}">{{username}}</a> <br>
+{{/each}}
+
+{{else}}
+<h3>Your info:</h3>
+<section id='customerinfo'>
+<img src='{{user.profilePic}}' alt='(Upload your photo in your "Edit profile section!")'>  
+<p>email: {{user.email}}</p>
+<p>Bio: {{user.bio}}</p>
+</section>
+  <h3>Your received reviews:</h3>
+    {{#each rev}}
+    <p id='allreviews'></p>
+    <p>{{this.reviewText}}</p>
+    {{/each}} 
+  <h3>Your received discounts:</h3>
+    {{#each dis}}
+    <p id='alldiscounts'></p>
+    <p>Number of guests: {{this.pax}}</p>
+    <p>Percentage of discount above the total: {{this.type}}%</p>
+    <p>Message of the restaurant owner for you: "<i>{{this.message}}</i>"</p>
+    {{/each}}
+{{/if}}

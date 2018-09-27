@@ -1,0 +1,26 @@
+<img src="{{user.profilePic}}" alt='Upload a photo!'>
+<h1>
+  {{user.username}}
+</h1>
+<h3>{{user.bio}}</h3>
+
+<form action="/profile/publicProfile/{{user._id}}" method="POST" id="form-container">
+  <label for="reviewText">Make a review to {{user.username}}:</label>
+  <input id="reviewText" type="text" name="reviewText" placeholder="Make a review to {{user.username}}">
+  <button type="submit">Save review</button>  
+  {{#if message }}
+    <div class="message">{{ message }}</div>
+  {{/if}}
+</form>
+
+<a href="/discounts/{{user._id}}">Assign a discount to {{user.username}}</a>
+</form>
+
+<section>
+  <h3>Reviews of this costumer:</h3>
+  {{#each rev}}
+  <p id='allreviews'></p>
+  <p>{{reviewText}}</p>
+  {{/each}} 
+</section>
+

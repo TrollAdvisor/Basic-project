@@ -15,7 +15,7 @@ const flash      = require("connect-flash");
     
 
 mongoose
-  .connect('mongodb://localhost/trolladvisor', {useNewUrlParser: true})
+  .connect(process.env.DBURL, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -59,9 +59,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   }
 });
   
-
 // default value for title local
-app.locals.title = 'trollAdvisor';
 
 // Enable authentication using session + passport
 app.use(session({
@@ -72,7 +70,13 @@ app.use(session({
 }))
 app.use(flash());
 require('./passport')(app);
-    
+
+
+app.use((req,res,next) => {
+  app.locals.title = 'trollAdvisor';
+  app.locals.user = req.user;
+  next();
+})
 
 const index = require('./routes/index');
 app.use('/', index);
@@ -80,5 +84,10 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
       
+const profileRoutes = require('./routes/profile');
+app.use('/profile', profileRoutes);
+
+const discountsRoutes = require('./routes/discounts');
+app.use('/discounts', discountsRoutes);
 
 module.exports = app;

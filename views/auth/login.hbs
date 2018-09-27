@@ -1,6 +1,7 @@
-<h2>Signup</h2>
 
-<form action="/auth/signup" method="POST" id="form-container">
+<h2>Login</h2>
+
+<form action="/auth/login" method="POST" id="form-container">
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
 
@@ -15,10 +16,15 @@
 
   <br><br>
 
-  <button>Create account</button>
+  <a {{#if user.isRestaurant}}
+  href="/profile/privateProfile"
+  {{else}}
+  href="/profile/customerProfile"
+  {{/if}}
+  ></a><button>Login</button>
 
   <p class="account-message">
-    Do you already have an account?
-    <a href="/auth/login">Login</a>
+    Don't have an account yet?
+  <a href="/auth/signup">Signup</a>
   </p>
 </form>

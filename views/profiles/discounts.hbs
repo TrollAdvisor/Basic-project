@@ -1,0 +1,19 @@
+<h1>Assign a discount to {{user.username}}:</h1>
+
+<form action="/discounts/{{user._id}}" method="POST" id="form-container">
+
+<label for="type">Percentage (%) of discount:</label>
+<input id='type' type="number" step='5' min='0' max='50' name='type' value="{{discount.type}}"><br><br>
+
+<label for="pax">Number of assistants</label>
+<input id='pax' type="number" min='1' name='pax' value="{{discount.pax}}" ><br><br>
+
+<label for="message">Include a message to your guests:</label>
+<input id='message' type="text" name='message' value="{{discount.message}}"><br><br>
+
+<button type="submit">Send discount</button>
+{{#if message }}
+<div class="error-message">{{ message }}</div>
+{{/if}}
+
+</form>
