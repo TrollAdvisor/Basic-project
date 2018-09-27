@@ -33,23 +33,23 @@ let users = [
     isRestaurant: false
   },
   {
-    username: "Mini Me",
+    username: "Annita Hogsenberg",
     password: bcrypt.hashSync("Mini Me", bcrypt.genSaltSync(bcryptSalt)),
-    email: 'mini@me.com',
+    email: 'annaHB@ta.com',
     bio: 'I hate you all. My dad is very rich. I will kill you all. Love me',    ratingAverage: 2,
     isRestaurant: false
   },
   {
-    username: "Gobo",
+    username: "Dénnis StormBreaker",
     password: bcrypt.hashSync("Gobo", bcrypt.genSaltSync(bcryptSalt)),
-    email: 'gobo@miau.com',
+    email: 'dennislover@miau.com',
     bio: 'I am a cat in real life. I love eating everything, including plastic, so I will love almost every type of food',
     isRestaurant: false
   },
   {
-    username: "Tanis",
+    username: "Gonzalrog",
     password: bcrypt.hashSync("Tanis", bcrypt.genSaltSync(bcryptSalt)),
-    email: 'tanis@satan.com',
+    email: 'gonzo@satan.com',
     bio: 'I am THE CREATOR. I will persecute you in your dreams, and this is my idea.',
     isRestaurant: false
   },
