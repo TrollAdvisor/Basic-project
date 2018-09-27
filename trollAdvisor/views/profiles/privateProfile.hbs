@@ -5,7 +5,7 @@
 {{#if user.isRestaurant}}
 <h3>Your info:</h3>
 <section id='restaurantinfo'>
-<img src='{{user.profilePic}}' alt='profilePic'>  
+<img src='{{user.profilePic}}' alt='(Upload your photo in your "Edit profile section!")'>  
 <p>email: {{user.email}}</p>
 <p>Address: {{user.address}}</p>
 <p>City: {{user.city}}</p>
@@ -18,7 +18,7 @@
 {{else}}
 <h3>Your info:</h3>
 <section id='customerinfo'>
-<img src='{{user.profilePic}}' alt='profilePic'>  
+<img src='{{user.profilePic}}' alt='(Upload your photo in your "Edit profile section!")'>  
 <p>email: {{user.email}}</p>
 <p>Bio: {{user.bio}}</p>
 </section>
@@ -30,6 +30,8 @@
   <h3>Your received discounts:</h3>
     {{#each dis}}
     <p id='alldiscounts'></p>
-    <p>{{this.message}}</p>
+    <p>Number of guests: {{this.pax}}</p>
+    <p>Percentage of discount above the total: {{this.type}}%</p>
+    <p>Message of the restaurant owner for you: "<i>{{this.message}}</i>"</p>
     {{/each}}
 {{/if}}
